@@ -156,22 +156,58 @@
             justify-content: center;
             text-align: center;
             padding: 2rem;
-            background: #0d1117;
+            background: linear-gradient(180deg, #0a0e27 0%, #1a1f3a 40%, #0d1117 100%);
             position: relative;
             overflow: hidden;
         }
 
-        /* Animated background gradient orbs */
+        /* Kveldshimmel med stjerner */
         .hero::before {
             content: '';
             position: absolute;
-            width: 1200px;
-            height: 1200px;
-            background: radial-gradient(circle, rgba(88, 166, 255, 0.15) 0%, rgba(121, 192, 255, 0.05) 40%, transparent 70%);
-            top: -600px;
-            right: -600px;
-            animation: pulseGlow 8s ease-in-out infinite;
-            filter: blur(60px);
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 10% 15%, white, transparent),
+                radial-gradient(1px 1px at 15% 25%, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(2px 2px at 25% 10%, white, transparent),
+                radial-gradient(1px 1px at 30% 35%, rgba(255, 255, 255, 0.7), transparent),
+                radial-gradient(2px 2px at 35% 20%, white, transparent),
+                radial-gradient(1px 1px at 45% 8%, rgba(255, 255, 255, 0.9), transparent),
+                radial-gradient(2px 2px at 50% 30%, white, transparent),
+                radial-gradient(1px 1px at 55% 12%, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(2px 2px at 65% 25%, white, transparent),
+                radial-gradient(1px 1px at 70% 5%, rgba(255, 255, 255, 0.7), transparent),
+                radial-gradient(2px 2px at 75% 18%, white, transparent),
+                radial-gradient(1px 1px at 80% 28%, rgba(255, 255, 255, 0.9), transparent),
+                radial-gradient(2px 2px at 85% 15%, white, transparent),
+                radial-gradient(1px 1px at 90% 22%, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(1px 1px at 95% 10%, white, transparent),
+                radial-gradient(1px 1px at 20% 40%, rgba(255, 255, 255, 0.6), transparent),
+                radial-gradient(1px 1px at 40% 45%, rgba(255, 255, 255, 0.7), transparent),
+                radial-gradient(1px 1px at 60% 38%, rgba(255, 255, 255, 0.5), transparent),
+                radial-gradient(1px 1px at 78% 42%, rgba(255, 255, 255, 0.6), transparent);
+            background-size: 100% 100%;
+            animation: twinkle 4s ease-in-out infinite;
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; }
+        }
+
+        /* Stjerneskudd animasjon */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            pointer-events: none;
         }
 
         @keyframes pulseGlow {
@@ -185,16 +221,151 @@
             }
         }
 
-        .hero::after {
+        /* Stjerneskudd - Linje med kule på enden */
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 80px;
+            background: linear-gradient(180deg,
+                #fff 0%,
+                rgba(255, 255, 255, 0.8) 10%,
+                rgba(135, 206, 235, 0.4) 40%,
+                rgba(135, 206, 235, 0.1) 70%,
+                transparent 100%);
+            opacity: 0;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+
+        .shooting-star::before {
             content: '';
             position: absolute;
-            width: 900px;
-            height: 900px;
-            background: radial-gradient(circle, rgba(121, 192, 255, 0.12) 0%, rgba(88, 166, 255, 0.04) 40%, transparent 70%);
-            bottom: -450px;
-            left: -450px;
-            animation: pulseGlow 10s ease-in-out infinite reverse;
-            filter: blur(60px);
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, #fff 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 15px 5px rgba(255, 255, 255, 1),
+                0 0 25px 8px rgba(135, 206, 235, 0.8),
+                0 0 35px 12px rgba(135, 206, 235, 0.5);
+        }
+
+        .shooting-star::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100px;
+            background: linear-gradient(180deg,
+                rgba(255, 255, 255, 0.3) 0%,
+                rgba(135, 206, 235, 0.2) 30%,
+                rgba(135, 206, 235, 0.1) 60%,
+                transparent 100%);
+            filter: blur(3px);
+        }
+
+        .shooting-star:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation: shootingStar1 5s linear infinite;
+            animation-delay: 0s;
+        }
+
+        .shooting-star:nth-child(2) {
+            top: 5%;
+            left: 40%;
+            animation: shootingStar2 7s linear infinite;
+            animation-delay: 2s;
+        }
+
+        .shooting-star:nth-child(3) {
+            top: 8%;
+            left: 60%;
+            animation: shootingStar3 6s linear infinite;
+            animation-delay: 4s;
+        }
+
+        .shooting-star:nth-child(4) {
+            top: 12%;
+            left: 30%;
+            animation: shootingStar4 8s linear infinite;
+            animation-delay: 1s;
+        }
+
+        .shooting-star:nth-child(5) {
+            top: 15%;
+            left: 50%;
+            animation: shootingStar5 6.5s linear infinite;
+            animation-delay: 3.5s;
+        }
+
+        @keyframes shootingStar1 {
+            0% {
+                transform: translateX(0) translateY(0) rotate(135deg);
+                opacity: 0;
+            }
+            5% { opacity: 1; }
+            50% { opacity: 1; }
+            100% {
+                transform: translateX(600px) translateY(600px) rotate(135deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes shootingStar2 {
+            0% {
+                transform: translateX(0) translateY(0) rotate(140deg);
+                opacity: 0;
+            }
+            5% { opacity: 1; }
+            50% { opacity: 1; }
+            100% {
+                transform: translateX(550px) translateY(650px) rotate(140deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes shootingStar3 {
+            0% {
+                transform: translateX(0) translateY(0) rotate(130deg);
+                opacity: 0;
+            }
+            5% { opacity: 1; }
+            50% { opacity: 1; }
+            100% {
+                transform: translateX(650px) translateY(550px) rotate(130deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes shootingStar4 {
+            0% {
+                transform: translateX(0) translateY(0) rotate(138deg);
+                opacity: 0;
+            }
+            5% { opacity: 1; }
+            50% { opacity: 1; }
+            100% {
+                transform: translateX(580px) translateY(620px) rotate(138deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes shootingStar5 {
+            0% {
+                transform: translateX(0) translateY(0) rotate(132deg);
+                opacity: 0;
+            }
+            5% { opacity: 1; }
+            50% { opacity: 1; }
+            100% {
+                transform: translateX(620px) translateY(580px) rotate(132deg);
+                opacity: 0;
+            }
         }
 
         .grid-overlay {
@@ -210,6 +381,101 @@
             opacity: 0.3;
         }
 
+        /* BuNiZ Silhouette */
+        .deity-silhouette {
+            position: absolute;
+            right: 8%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 120px;
+            height: 120px;
+            opacity: 0.15;
+            z-index: 5;
+            filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.6));
+        }
+
+        .deity-body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* BuNiZ Head (round) */
+        .deity-body::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 65px;
+            height: 65px;
+            background: #000;
+            border-radius: 50%;
+        }
+
+        /* BuNiZ Body (small round) */
+        .deity-body::after {
+            content: '';
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 45px;
+            height: 45px;
+            background: #000;
+            border-radius: 50%;
+        }
+
+        /* BuNiZ Eyes */
+        .deity-eye {
+            position: absolute;
+            top: 35px;
+            width: 10px;
+            height: 10px;
+            background: #000;
+            border-radius: 50%;
+            transition: all 0.5s ease;
+        }
+
+        .deity-eye.left {
+            left: 35px;
+        }
+
+        .deity-eye.right {
+            right: 35px;
+        }
+
+        /* Red glowing eyes during meteor */
+        .deity-silhouette.awakened .deity-eye {
+            background: radial-gradient(circle, #ff0000 0%, #ff3333 50%, #cc0000 100%);
+            box-shadow: 
+                0 0 15px #ff0000,
+                0 0 25px #ff0000,
+                0 0 35px #ff0000,
+                0 0 45px #cc0000;
+            animation: eyeGlow 0.5s ease-in-out infinite alternate;
+        }
+
+        .deity-silhouette.awakened {
+            opacity: 0.35;
+            filter: drop-shadow(0 0 40px rgba(255, 0, 0, 0.7));
+        }
+
+        @keyframes eyeGlow {
+            0% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        /* Gentle floating animation */
+        @keyframes deityFloat {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-52%) translateX(-5px); }
+        }
+
+        .deity-silhouette {
+            animation: deityFloat 8s ease-in-out infinite;
+        }
+
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-30px) rotate(5deg); }
@@ -217,7 +483,7 @@
 
         .hero-content {
             position: relative;
-            z-index: 1;
+            z-index: 10;
             max-width: 800px;
         }
 
@@ -229,6 +495,8 @@
             object-fit: contain;
             filter: brightness(1.05) drop-shadow(0 10px 40px rgba(88, 166, 255, 0.4)) drop-shadow(0 0 60px rgba(121, 192, 255, 0.2));
             animation: slideDown 1s ease-out, logoGlow 6s ease-in-out infinite;
+            position: relative;
+            z-index: 15;
         }
 
         @keyframes logoGlow {
@@ -1405,6 +1673,16 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            /* Navigation - Hamburger menu style */
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            nav a {
+                font-size: 0.75rem;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
                 line-height: 1.2;
@@ -1417,11 +1695,6 @@
             .about-content,
             .contact-grid {
                 grid-template-columns: 1fr;
-            }
-
-            nav ul {
-                gap: 1rem;
-                font-size: 0.9rem;
             }
 
             .section-title {
@@ -1528,11 +1801,17 @@
                 font-size: 0.75rem;
                 padding: 0.4rem 0.8rem;
             }
+
+            /* Chat adjustments for tablet */
+            .bolle-chat-container {
+                width: 350px;
+            }
         }
 
         @media (max-width: 480px) {
+            /* Extra small mobile adjustments */
             .hero h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
             .tagline {
@@ -1545,7 +1824,20 @@
 
             nav ul {
                 gap: 0.5rem;
-                font-size: 0.85rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav a {
+                font-size: 0.7rem;
+            }
+
+            header {
+                padding: 0.75rem 1rem;
+            }
+
+            .logo img {
+                height: 35px;
             }
 
             .trust-badges {
@@ -1571,10 +1863,863 @@
             .pricing-card::after {
                 display: none;
             }
+
+            /* Optimize border for small screens */
+            body::before {
+                border-width: 4px;
+            }
+
+            body::after {
+                top: 4px;
+                left: 4px;
+                right: 4px;
+                bottom: 4px;
+            }
+
+            /* Hero adjustments */
+            .hero {
+                padding: 6rem 1rem 4rem;
+            }
+
+            .hero-logo {
+                max-width: 250px;
+            }
+
+            .cta-button {
+                padding: 0.9rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            /* Section padding */
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .process,
+            .trust-section,
+            .faq,
+            .value-section {
+                padding: 2.5rem 1rem;
+            }
+        }
+
+        /* Scroll Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 6px;
+            left: 6px;
+            right: 6px;
+            height: 4px;
+            background: rgba(88, 166, 255, 0.1);
+            z-index: 10001;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #58a6ff, #8b5cf6);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        /* Quick Contact Button */
+        .quick-contact {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #58a6ff 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.5);
+            z-index: 999;
+            transition: all 0.3s ease;
+            animation: pulse-button 2s infinite;
+            text-decoration: none;
+        }
+
+        .quick-contact:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.7);
+        }
+
+        @keyframes pulse-button {
+            0%, 100% { box-shadow: 0 4px 20px rgba(139, 92, 246, 0.5); }
+            50% { box-shadow: 0 4px 35px rgba(139, 92, 246, 0.8); }
+        }
+
+        /* Technology Section */
+        .tech-section {
+            padding: 5rem 6rem;
+            background: linear-gradient(180deg, #0d1117 0%, #010409 100%);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 3rem auto 0;
+        }
+
+        .tech-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(22, 27, 34, 0.4);
+            border: 1px solid rgba(88, 166, 255, 0.15);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(88, 166, 255, 0.5);
+            box-shadow: 0 8px 25px rgba(88, 166, 255, 0.2);
+        }
+
+        .tech-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+            filter: hue-rotate(200deg) saturate(2) brightness(1.2);
+        }
+
+        .tech-name {
+            color: #c0c8d0;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            padding: 4rem 6rem;
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border-top: 1px solid rgba(88, 166, 255, 0.3);
+            border-bottom: 1px solid rgba(88, 166, 255, 0.3);
+            text-align: center;
+        }
+
+        .cta-banner h2 {
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #58a6ff 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .cta-banner p {
+            color: #c0c8d0;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 768px) {
+            .tech-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .cta-banner {
+                padding: 3rem 1.5rem;
+            }
+
+            .cta-banner h2 {
+                font-size: 2rem;
+            }
+
+            .quick-contact {
+                bottom: 80px;
+                right: 20px;
+                width: 55px;
+                height: 55px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Mobile optimizations for chat */
+            .bolle-chat-container {
+                left: 10px;
+                right: 10px;
+                width: calc(100% - 20px);
+                max-width: 380px;
+                height: 500px;
+            }
+
+            .bolle-chat-container.active {
+                bottom: 10px;
+            }
+
+            /* Hide deity silhouette on mobile */
+            .deity-silhouette {
+                display: none;
+            }
+
+            /* Adjust shooting stars for mobile */
+            .shooting-star {
+                width: 80px;
+            }
+
+            /* Meteor event adjustments */
+            .meteor-banner {
+                width: 90%;
+                max-width: none;
+                padding: 2rem 1.5rem;
+            }
+
+            .meteor-banner h2 {
+                font-size: 1.5rem;
+            }
+
+            .meteor-code {
+                font-size: 2rem;
+                padding: 1rem;
+            }
+        }
+
+        /* Meteor Crash Event */
+        .meteor-crash {
+            position: fixed;
+            top: -300px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #ff6600 0%, #ff3300 30%, #cc0000 60%, transparent 100%);
+            border-radius: 50%;
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            box-shadow: 
+                0 0 100px 50px rgba(255, 102, 0, 0.8),
+                0 0 200px 100px rgba(255, 51, 0, 0.5);
+        }
+
+        .meteor-crash.active {
+            animation: meteorFall 2s ease-in forwards;
+        }
+
+        @keyframes meteorFall {
+            0% {
+                top: -300px;
+                opacity: 0;
+                transform: translateX(-50%) rotate(0deg) scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) rotate(180deg) scale(1);
+            }
+            100% {
+                top: 40%;
+                opacity: 1;
+                transform: translateX(-50%) rotate(360deg) scale(1.2);
+            }
+        }
+
+        .meteor-banner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: linear-gradient(135deg, #ff6600 0%, #ff3300 50%, #cc0000 100%);
+            padding: 3rem 4rem;
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.8),
+                0 0 100px rgba(255, 102, 0, 0.6),
+                inset 0 0 50px rgba(255, 255, 255, 0.1);
+            z-index: 10001;
+            text-align: center;
+            max-width: 600px;
+            border: 3px solid #ffd700;
+            opacity: 0;
+        }
+
+        .meteor-banner.show {
+            animation: bannerAppear 0.5s ease-out 2s forwards;
+        }
+
+        @keyframes bannerAppear {
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .meteor-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .meteor-banner p {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .meteor-banner .code {
+            display: inline-block;
+            background: #000;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffd700;
+            letter-spacing: 3px;
+            margin: 1rem 0;
+            border: 2px solid #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .meteor-banner .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid #fff;
+            color: #fff;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .meteor-banner .close-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: rotate(90deg);
+        }
+
+        .meteor-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .meteor-overlay.show {
+            animation: fadeIn 0.5s ease-out 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                pointer-events: all;
+            }
+        }
+
+        /* Rabattkode Section */
+        .discount-section {
+            background: linear-gradient(135deg, #1a1f3a 0%, #0d1117 100%);
+            padding: 4rem 2rem;
+            border-top: 2px solid;
+            border-image: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(139, 148, 158, 0.3) 30%, 
+                rgba(192, 200, 208, 0.5) 50%, 
+                rgba(139, 148, 158, 0.3) 70%, 
+                transparent 100%) 1;
+        }
+
+        .discount-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .discount-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #c0c8d0, #58a6ff, #79c0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .discount-section p {
+            color: #8b949e;
+            margin-bottom: 2rem;
+        }
+
+        .discount-input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .discount-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            background: rgba(13, 17, 23, 0.8);
+            border: 2px solid #30363d;
+            border-radius: 10px;
+            color: #e6edf3;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+        }
+
+        .discount-input:focus {
+            outline: none;
+            border-color: #58a6ff;
+            box-shadow: 0 0 20px rgba(88, 166, 255, 0.3);
+        }
+
+        .discount-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #58a6ff, #79c0ff);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .discount-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(88, 166, 255, 0.4);
+        }
+
+        .discount-message {
+            margin-top: 1.5rem;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+        }
+
+        .discount-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .discount-message.error {
+            background: rgba(255, 68, 68, 0.1);
+            border: 2px solid #ff4444;
+            color: #ff6b6b;
+        }
+
+        .discount-message.success {
+            background: rgba(64, 255, 106, 0.1);
+            border: 2px solid #40ff6a;
+            color: #40ff6a;
+            font-size: 1.1rem;
+        }
+
+        /* Bolle Chatbot Mascot */
+        .bolle-button {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 120px;
+            height: 120px;
+            cursor: pointer;
+            z-index: 9997;
+            transition: transform 0.3s;
+        }
+
+        .bolle-button:hover {
+            transform: scale(1.05);
+        }
+
+        .bolle-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 15px rgba(139, 69, 19, 0.3));
+        }
+
+        .bolle-sleeping {
+            position: relative;
+            animation: breathe 3s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .bolle-bed {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 130px;
+            height: 40px;
+            background: linear-gradient(180deg, #0d1117 0%, #000814 100%);
+            border-radius: 20px;
+            box-shadow: 
+                0 5px 20px rgba(88, 166, 255, 0.3),
+                inset 0 2px 10px rgba(88, 166, 255, 0.2);
+            border: 2px solid #58a6ff;
+            z-index: -1;
+        }
+
+        .bolle-bed::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            right: 10px;
+            height: 20px;
+            background: linear-gradient(180deg, #1a1f3a 0%, #0d1117 100%);
+            border-radius: 15px;
+            box-shadow: inset 0 2px 5px rgba(88, 166, 255, 0.3);
+        }
+
+        .zzz {
+            position: absolute;
+            top: -30px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: #8b949e;
+            animation: float-zzz 2s ease-in-out infinite;
+        }
+
+        @keyframes float-zzz {
+            0%, 100% { transform: translateY(0); opacity: 0.6; }
+            50% { transform: translateY(-10px); opacity: 1; }
+        }
+
+        .bolle-chat-container {
+            position: fixed;
+            bottom: -600px;
+            left: 30px;
+            width: 380px;
+            height: 550px;
+            background: linear-gradient(135deg, #0d1117 0%, #1a1f3a 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+            border: 2px solid #30363d;
+            z-index: 9998;
+            transition: bottom 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            overflow: hidden;
+        }
+
+        .bolle-chat-container.active {
+            bottom: 30px;
+        }
+
+        .bolle-header {
+            background: linear-gradient(135deg, #1a1f3a 0%, #0a0e27 100%);
+            padding: 1.5rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 2px solid #30363d;
+        }
+
+        .bolle-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .bolle-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bolle-info h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .bolle-info p {
+            margin: 0;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .bolle-close {
+            margin-left: auto;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .bolle-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .bolle-messages {
+            height: 360px;
+            overflow-y: auto;
+            padding: 1.5rem;
+            background: #0d1117;
+        }
+
+        .bolle-message {
+            margin-bottom: 1rem;
+            animation: slideInMessage 0.3s ease-out;
+        }
+
+        @keyframes slideInMessage {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bolle-message.bolle {
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+        }
+
+        .bolle-message.user {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .message-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #3e5891;
+            flex-shrink: 0;
+        }
+
+        .message-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .message-bubble {
+            max-width: 75%;
+            padding: 0.8rem 1.2rem;
+            border-radius: 15px;
+            line-height: 1.5;
+        }
+
+        .bolle-message.bolle .message-bubble {
+            background: linear-gradient(135deg, #1a1f3a 0%, #0a0e27 100%);
+            color: #e6edf3;
+            border-bottom-left-radius: 5px;
+            border: 1px solid #30363d;
+        }
+
+        .bolle-message.user .message-bubble {
+            background: linear-gradient(135deg, #30363d 0%, #21262d 100%);
+            color: #e6edf3;
+            border-bottom-right-radius: 5px;
+            border: 1px solid #30363d;
+        }
+
+        .bolle-typing {
+            display: none;
+            padding: 0.5rem 1rem;
+            background: #1a1f3a;
+            color: #e6edf3;
+            border-radius: 15px;
+            width: fit-content;
+            margin-left: 45px;
+            border: 1px solid #30363d;
+        }
+
+        .bolle-typing.active {
+            display: block;
+        }
+
+        .typing-dots {
+            display: inline-flex;
+            gap: 4px;
+        }
+
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            background: #e6edf3;
+            border-radius: 50%;
+            animation: typingDot 1.4s infinite;
+        }
+
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typingDot {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        .bolle-input-area {
+            padding: 1rem 1.5rem;
+            background: #0d1117;
+            border-top: 1px solid #30363d;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .bolle-input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #30363d;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            background: #0d1117;
+            color: #e6edf3;
+            transition: all 0.3s;
+        }
+
+        .bolle-input:focus {
+            outline: none;
+            border-color: #30363d;
+            box-shadow: 0 0 0 3px rgba(48, 54, 61, 0.3);
+        }
+
+        .bolle-send {
+            background: linear-gradient(135deg, #1a1f3a 0%, #0a0e27 100%);
+            border: 1px solid #30363d;
+            color: #e6edf3;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bolle-send:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(48, 54, 61, 0.6);
+        }
+
+        .bolle-tired-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            animation: fadeIn 0.3s;
+        }
+
+        .bolle-tired-overlay.active {
+            display: flex;
+        }
+
+        .bolle-tired-message {
+            text-align: center;
+            color: rgb(0, 0, 0);
+            padding: 2rem;
+        }
+
+        .bolle-tired-message h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .bolle-tired-message p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .bolle-running {
+            position: fixed;
+            bottom: -150px;
+            left: 30px;
+            width: 100px;
+            height: 100px;
+            z-index: 9999;
+            transition: bottom 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .bolle-running.run-up {
+            bottom: 160px;
+        }
+
+        .bolle-running img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            animation: bounce 0.5s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
     </style>
 </head>
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="progress-bar">
+        <div class="progress-bar-fill" id="progressBar"></div>
+    </div>
+
     <!-- Loading Bar -->
     <div class="loading-bar"></div>
     
@@ -1589,21 +2734,32 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#kontakt">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
         <div class="grid-overlay"></div>
+        
+        <!-- BuNiZ Silhouette -->
+        <div class="deity-silhouette" id="shivaDeity">
+            <div class="deity-body">
+                <div class="deity-eye left"></div>
+                <div class="deity-eye right"></div>
+            </div>
+        </div>
+        
         <div class="hero-content">
             <img src="Maggie.png" alt="Maggie Studios" class="hero-logo">
             <p class="tagline">Sites that speak for you</p>
-            <p style="font-size: 1.05rem; color: #c0c8d0; margin-bottom: 2rem; font-weight: 400;">
-                Premium web development that drives growth and results
-            </p>
-            <a href="#contact" class="cta-button">Start Your Project</a>
+            <a href="#kontakt" class="cta-button">Start Your Project</a>
         </div>
         <div class="scroll-indicator"></div>
     </section>
@@ -1814,6 +2970,40 @@
         </div>
     </section>
 
+    <!-- Technology Stack Section -->
+    <section class="tech-section">
+        <h2 class="section-title">Technologies & Tools</h2>
+        <p style="text-align: center; color: #c0c8d0; max-width: 700px; margin: 0 auto 0;">
+            Built with modern, industry-standard technologies for optimal performance
+        </p>
+        <div class="tech-grid">
+            <div class="tech-item">
+                <div class="tech-icon">⚡</div>
+                <p class="tech-name">HTML5</p>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">🎨</div>
+                <p class="tech-name">CSS3</p>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">⚙️</div>
+                <p class="tech-name">JavaScript</p>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">📱</div>
+                <p class="tech-name">Responsive</p>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">🔍</div>
+                <p class="tech-name">SEO</p>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">🚀</div>
+                <p class="tech-name">Performance</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Pricing Section -->
     <section id="pricing" class="pricing">
         <h2 class="section-title">Unbeatable Prices</h2>
@@ -1822,20 +3012,20 @@
             <div class="price">250 NOK</div>
             <p class="price-description">
                 <strong>Yes, you read that right!</strong> For only 250 NOK you get a professional 
-                nettside for din bedrift. Dette inkluderer grunnleggende design, innhold og oppsett.
+                website for your business. This includes basic design, content, and setup.
             </p>
             <div class="price-note">
-                <strong>FLEKSIBLE PRISER:</strong><br>
-                Prisen kan variere basert på dine spesifikke ønsker og behov. 
-                Jo mer avansert løsning, desto mer tilpasset pris - men alltid 
-                til en <strong>svært konkurransedyktig pris</strong>!
+                <strong>FLEXIBLE PRICING:</strong><br>
+                Price may vary based on your specific needs and requirements. 
+                More advanced solutions have custom pricing - but always 
+                at a <strong>highly competitive rate</strong>!
             </div>
             <div class="price-note" style="margin-top: 1rem; border-left-color: #58a6ff;">
-                <strong>RABATTER:</strong><br>
-                Jeg gir ofte rabatter til nye kunder og ved større prosjekter.
-                Kontakt meg for et skreddersydd tilbud!
+                <strong>DISCOUNTS:</strong><br>
+                I often offer discounts to new customers and for larger projects.
+                Contact me for a custom quote!
             </div>
-            <a href="#kontakt" class="cta-button" style="margin-top: 2rem;">Be om tilbud</a>
+            <a href="#kontakt" class="cta-button" style="margin-top: 2rem;">Request Quote</a>
         </div>
     </section>
 
@@ -1972,6 +3162,13 @@
         </div>
     </section>
 
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <h2>Ready to Elevate Your Business?</h2>
+        <p>Let's create something amazing together. Get your free quote today and take your online presence to the next level!</p>
+        <a href="#kontakt" class="cta-button" style="display: inline-block; padding: 1.2rem 3rem; font-size: 1.1rem;">Get Started Now</a>
+    </section>
+
     <!-- Kontakt Section -->
     <section id="kontakt" class="contact">
         <h2 class="section-title">Get In Touch</h2>
@@ -2039,10 +3236,582 @@
         </div>
     </footer>
 
+    <!-- Rabattkode Section -->
+    <section class="discount-section">
+        <div class="discount-container">
+            <h2>Har du en rabattkode?</h2>
+            <p>Skriv inn rabattkoden din her</p>
+            <div class="discount-input-group">
+                <input type="text" class="discount-input" id="discountCode" placeholder="SKRIV INN KODE" maxlength="6">
+                <button class="discount-btn" onclick="checkDiscount()">Sjekk kode</button>
+            </div>
+            <div class="discount-message" id="discountMessage"></div>
+        </div>
+    </section>
+
+    <!-- Meteor Crash Elements -->
+    <div class="meteor-overlay" id="meteorOverlay"></div>
+    <div class="meteor-crash" id="meteorCrash"></div>
+    <div class="meteor-banner" id="meteorBanner">
+        <button class="close-btn" onclick="closeMeteor()">×</button>
+        <h2>🔥 METEOR KRASJ! 🔥</h2>
+        <p>Gratulerer! Du var den heldige #100 besøkende!</p>
+        <p style="font-size: 1.5rem; margin: 2rem 0;">Du har vunnet <strong>25% RABATT</strong> på din nettside!</p>
+        <div class="code" id="meteorCode"></div>
+        <p style="font-size: 0.9rem; color: #ffd700; margin-top: 1rem;">⏰ Utløper om 24 timer!</p>
+        <p style="font-size: 0.85rem; margin-top: 1rem;">Bruk koden i rabattkode-feltet nederst på siden</p>
+    </div>
+
     <!-- Back to top button -->
     <button class="back-to-top" id="backToTop">↑</button>
 
+    <!-- Bolle Chatbot Mascot -->
+    <div class="bolle-button" id="bolleButton" onclick="wakeUpBolle()">
+        <div class="bolle-sleeping">
+            <img src="bolle.png" alt="BuNiZ" style="width: 100%; height: 100%; object-fit: contain;">
+            <div class="bolle-bed"></div>
+            <div class="zzz">Zzz...</div>
+        </div>
+    </div>
+
+    <!-- Bolle Running Animation -->
+    <div class="bolle-running" id="bolleRunning">
+        <img src="bolle.png" alt="BuNiZ">
+    </div>
+
+    <!-- Bolle Chat Container -->
+    <div class="bolle-chat-container" id="bolleChatContainer">
+        <div class="bolle-header">
+            <div class="bolle-avatar">
+                <img src="bolle.png" alt="BuNiZ">
+            </div>
+            <div class="bolle-info">
+                <h3>BuNiZ</h3>
+                <p>Din hjelpsomme assistent</p>
+            </div>
+            <button class="bolle-close" onclick="closeBolle()">×</button>
+        </div>
+        <div class="bolle-messages" id="bolleMessages">
+            <!-- Messages will be added here -->
+        </div>
+        <div class="bolle-typing" id="bolleTyping">
+            <div class="typing-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="bolle-input-area">
+            <input type="text" class="bolle-input" id="bolleInput" placeholder="Skriv en melding til BuNiZ..." onkeypress="handleBolleKeyPress(event)">
+            <button class="bolle-send" onclick="sendBolleMessage()">➤</button>
+        </div>
+        <div class="bolle-tired-overlay" id="bolleTiredOverlay">
+            <div class="bolle-tired-message">
+                <h3>😴 Zzz...</h3>
+                <p>BuNiZ er trøtt nå og trenger å sove litt!</p>
+                <p style="font-size: 0.9rem;">Kom tilbake senere! 💤</p>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Meteor Crash Event System
+        const DISCOUNT_CODES = ['060424', '100409'];
+        
+        function initMeteorEvent() {
+            // Get or initialize visit count
+            let visitCount = localStorage.getItem('maggieVisitCount') || 0;
+            visitCount = parseInt(visitCount) + 1;
+            localStorage.setItem('maggieVisitCount', visitCount);
+            
+            console.log('Visit count:', visitCount); // For testing
+            
+            // Trigger meteor on every 100th visit
+            if (visitCount % 100 === 0) {
+                setTimeout(triggerMeteorCrash, 3000); // Wait 3 seconds after page load
+            }
+        }
+        
+        function triggerMeteorCrash() {
+            const randomCode = DISCOUNT_CODES[Math.floor(Math.random() * DISCOUNT_CODES.length)];
+            const shivaDeity = document.getElementById('shivaDeity');
+            
+            // Awaken Shiva - eyes glow red
+            if (shivaDeity) {
+                shivaDeity.classList.add('awakened');
+            }
+            
+            // Show meteor after eyes glow
+            setTimeout(() => {
+                document.getElementById('meteorCrash').classList.add('active');
+            }, 1500);
+            
+            // Show banner and overlay after meteor appears
+            setTimeout(() => {
+                document.getElementById('meteorOverlay').classList.add('show');
+                document.getElementById('meteorBanner').classList.add('show');
+                document.getElementById('meteorCode').textContent = randomCode;
+                
+                // Save code and expiry time
+                const expiryTime = Date.now() + (24 * 60 * 60 * 1000); // 24 hours
+                localStorage.setItem('meteorDiscountCode', randomCode);
+                localStorage.setItem('meteorDiscountExpiry', expiryTime);
+                
+                // Calm Shiva after event
+                if (shivaDeity) {
+                    shivaDeity.classList.remove('awakened');
+                }
+            }, 3500);
+        }
+        
+        function closeMeteor() {
+            document.getElementById('meteorOverlay').classList.remove('show');
+            document.getElementById('meteorBanner').classList.remove('show');
+            document.getElementById('meteorCrash').classList.remove('active');
+        }
+        
+        function checkDiscount() {
+            const input = document.getElementById('discountCode');
+            const message = document.getElementById('discountMessage');
+            const code = input.value.trim().toUpperCase();
+            
+            if (!code) {
+                showMessage('Vennligst skriv inn en kode', 'error');
+                return;
+            }
+            
+            if (DISCOUNT_CODES.includes(code)) {
+                // Check if code has expired
+                const expiry = localStorage.getItem('meteorDiscountExpiry');
+                if (expiry && Date.now() > parseInt(expiry)) {
+                    showMessage('Denne koden har utløpt', 'error');
+                    return;
+                }
+                
+                showMessage('Gratulerer, du har fått 25% Rabatt. Ikke lukk siden og bruk koden innen 24timer', 'success');
+            } else {
+                showMessage('Denne koden funker ikke', 'error');
+            }
+        }
+        
+        function showMessage(text, type) {
+            const message = document.getElementById('discountMessage');
+            message.textContent = text;
+            message.className = 'discount-message show ' + type;
+        }
+        
+        // Allow Enter key to submit
+        document.getElementById('discountCode')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                checkDiscount();
+            }
+        });
+        
+        // Initialize meteor event on page load
+        window.addEventListener('load', initMeteorEvent);
+
+        // ===== BOLLE CHATBOT SYSTEM =====
+        let bolleMessageCount = 0;
+        let bolleConversationStartTime = null;
+        let conversationHistory = [];
+        let bunizPersonality = {
+            name: "BuNiZ",
+            role: "Hjelpsomme assistent for Maggie Studios",
+            traits: ["vennlig", "hjelpsom", "entusiastisk", "kunnskapsrik"],
+            knowledge: {
+                company: "Maggie Studios",
+                tagline: "Sites that speak for you",
+                owner: "Kanishka (17 år, VG2 Science Track)",
+                phone: "973 19 276",
+                email: "kanish.s@outlook.com",
+                basePrice: "250 NOK",
+                priceNote: "Startpris 250 NOK - kan variere basert på behov og krav",
+                discounts: "Tilbyr ofte rabatter til nye kunder og større prosjekter",
+                services: [
+                    "Komplett design (moderne og profesjonelt tilpasset din bedrift)",
+                    "Visuelt innhold (profesjonell bildeproduksjon og grafikk)",
+                    "E-handel integrasjon (produktsider med priser og bestillingsfunksjoner)",
+                    "Responsivt design (fungerer perfekt på mobil, tablet og desktop)",
+                    "Ytelsesoptimalisering (raske lastetider og SEO-vennlig kode)",
+                    "Skreddersydde løsninger (hver nettside er unik og tilpasset dine behov)"
+                ],
+                technology: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "SEO", "Performance Optimization"],
+                process: [
+                    "Konsultasjon og planlegging",
+                    "Design og utforming",
+                    "Utvikling og programmering",
+                    "Testing og kvalitetssikring",
+                    "Lansering og oppfølging"
+                ],
+                projects: [
+                    {
+                        name: "YumBite.ub",
+                        type: "Student Business",
+                        description: "Modern nettside for elevbedrift med produktvisning og kontaktfunksjon",
+                        rating: "5/5 stjerner",
+                        testimonial: "Beautiful website and amazing quality! Perfect for our business launch."
+                    },
+                    {
+                        name: "The Jhumka Luxury",
+                        type: "E-commerce",
+                        description: "Elegant e-handelsløsning for smykkebutikk med fokus på visuell presentasjon",
+                        rating: "5/5 stjerner",
+                        testimonial: "Exactly what we were looking for! Modern design with professional touch."
+                    }
+                ],
+                stats: {
+                    satisfaction: "100%",
+                    age: "17 år",
+                    education: "VG2 Science Track"
+                },
+                about: "17 år gammel webutvikler som kombinerer teknisk ekspertise med kreativ visjon. Hjelper bedrifter etablere sterk digital identitet. Tilbyr høy kvalitet til uslåelig pris - fordi alle bedrifter fortjener en profesjonell nettside!"
+            }
+        };
+        const MAX_MESSAGES = 30;
+        const MAX_CONVERSATION_TIME = 10 * 60 * 1000;
+        
+        function wakeUpBolle() {
+            document.getElementById('bolleButton').style.display = 'none';
+            document.getElementById('bolleRunning').classList.add('run-up');
+            
+            setTimeout(() => {
+                document.getElementById('bolleChatContainer').classList.add('active');
+                document.getElementById('bolleRunning').classList.remove('run-up');
+                
+                // Introduction message
+                setTimeout(() => {
+                    addBolleMessage("Hei! Jeg heter BuNiZ! 👋 Jeg er her for å hjelpe deg med alt du lurer på om Maggie Studios og nettsider! Hva kan jeg hjelpe deg med i dag? 😊");
+                    bolleConversationStartTime = Date.now();
+                }, 500);
+            }, 800);
+        }
+        
+        function closeBolle() {
+            // Bolle goes to sleep
+            document.getElementById('bolleTiredOverlay').classList.add('active');
+            
+            setTimeout(() => {
+                document.getElementById('bolleChatContainer').classList.remove('active');
+                document.getElementById('bolleTiredOverlay').classList.remove('active');
+                document.getElementById('bolleButton').style.display = 'block';
+                
+                // Clear messages
+                document.getElementById('bolleMessages').innerHTML = '';
+                bolleMessageCount = 0;
+                bolleConversationStartTime = null;
+            }, 2000);
+        }
+        
+        function sendBolleMessage() {
+            const input = document.getElementById('bolleInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addUserMessage(message);
+            input.value = '';
+            
+            bolleMessageCount++;
+            
+            // Check if Bolle should get tired
+            const conversationDuration = Date.now() - bolleConversationStartTime;
+            if (bolleMessageCount >= MAX_MESSAGES || conversationDuration >= MAX_CONVERSATION_TIME) {
+                setTimeout(() => {
+                    const tiredResponses = [
+                        "Uff, jeg begynner å bli litt trøtt nå... 😴 Jeg trenger en liten lur! Kom tilbake senere!",
+                        "Åhhh... *gjesper* 🥱 Jeg må sove litt nå! Vi snakkes senere!",
+                        "Så mange spørsmål! 💤 Jeg er kjempetrøtt nå... God natt!",
+                        "Zzz... jeg kan ikke holde øynene åpne lenger... 😴 Vi ses snart!"
+                    ];
+                    const tiredMessage = tiredResponses[Math.floor(Math.random() * tiredResponses.length)];
+                    addBolleMessage(tiredMessage);
+                    
+                    setTimeout(() => {
+                        closeBolle();
+                    }, 3000);
+                }, 1000);
+                return;
+            }
+            
+            // Show typing indicator
+            document.getElementById('bolleTyping').classList.add('active');
+            
+            // Generate response after delay
+            setTimeout(() => {
+                document.getElementById('bolleTyping').classList.remove('active');
+                const response = getBolleResponse(message.toLowerCase());
+                addBolleMessage(response);
+            }, 1000 + Math.random() * 1000);
+        }
+        
+        function handleBolleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendBolleMessage();
+            }
+        }
+        
+        function addUserMessage(text) {
+            const messagesContainer = document.getElementById('bolleMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'bolle-message user';
+            messageDiv.innerHTML = `<div class="message-bubble">${escapeHtml(text)}</div>`;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function addBolleMessage(text) {
+            const messagesContainer = document.getElementById('bolleMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'bolle-message bolle';
+            messageDiv.innerHTML = `
+                <div class="message-avatar">
+                    <img src="bolle.png" alt="BuNiZ">
+                </div>
+                <div class="message-bubble">${text}</div>
+            `;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function getBolleResponse(message) {
+            // Legg til i samtalehistorikk for kontekstforståelse
+            conversationHistory.push({role: 'user', message: message});
+            
+            // Intelligent svarmotor - forstår naturlig språk
+            const response = generateIntelligentResponse(message);
+            
+            // Lagre svaret
+            conversationHistory.push({role: 'assistant', message: response});
+            
+            return response;
+        }
+        
+        function generateIntelligentResponse(userMessage) {
+            const msg = userMessage.toLowerCase().trim();
+            
+            // === PERSONLIGE SPØRSMÅL OM BUNIZ ===
+            if (msg.match(/\b(hva|hvem|what|who).*(heter|er|are|is).*(du|you|buniz|navnet)/i) || 
+                msg.match(/\b(du heter|your name|ditt navn)/i)) {
+                return `Jeg heter ${bunizPersonality.name}! 🐰 Jeg er ${bunizPersonality.role}. Jeg elsker å hjelpe folk! Hva kan jeg hjelpe deg med?`;
+            }
+            
+            if (msg.match(/\b(hvem er du|who are you|hva er du|what are you)/i)) {
+                return `Jeg er ${bunizPersonality.name}, en virtuell assistent! 🐰 Jeg jobber for ${bunizPersonality.knowledge.company} og hjelper folk med spørsmål om nettsider, design og webutvikling. Jeg er her for å gjøre det enklere for deg! 😊`;
+            }
+            
+            if (msg.match(/\b(hvordan.*(du|det)|har du det|how are you)/i)) {
+                const responses = [
+                    "Jeg har det kjempebra, takk! 😊 Det er alltid gøy å hjelpe folk! Hvordan har du det?",
+                    "Strålende! ✨ Jeg elsker å snakke med folk og hjelpe dem! Hva med deg?",
+                    "Takk for at du spør! 💕 Jeg har det fint! Hva kan jeg hjelpe deg med i dag?"
+                ];
+                return responses[Math.floor(Math.random() * responses.length)];
+            }
+            
+            // === HILSENER ===
+            if (msg.match(/^(hei|hallo|hi|hey|god\s+(dag|morgen|kveld)|yo|heisann)/i)) {
+                const greetings = [
+                    `Heisann! 👋 Hyggelig å møte deg! Jeg er ${bunizPersonality.name}. Hva kan jeg hjelpe deg med?`,
+                    "Hei der! 😊 Så kos at du tok kontakt! Hva lurer du på?",
+                    "Hallo! ✨ Jeg gleder meg til å hjelpe deg! Hva tenker du på?",
+                    "Hey! 🌟 Velkommen! Hva kan jeg gjøre for deg i dag?"
+                ];
+                return greetings[Math.floor(Math.random() * greetings.length)];
+            }
+            
+            // === TAKK ===
+            if (msg.match(/\b(takk|tusen|thanks|thank you|ty|tack)/i)) {
+                const thanks = [
+                    "Bare hyggelig! 💕 Er det noe mer jeg kan hjelpe med?",
+                    "Så lite så! 😊 Jeg er her hvis du lurer på noe mer!",
+                    "Det var så lite! ✨ Kom gjerne med flere spørsmål!",
+                    "Alltid glad for å hjelpe! 🌟 Trenger du noe annet?"
+                ];
+                return thanks[Math.floor(Math.random() * thanks.length)];
+            }
+            
+            // === HA DET / FARVEL ===
+            if (msg.match(/\b(ha det|farvel|bye|goodbye|ses|vi ses)/i)) {
+                const goodbyes = [
+                    "Ha det! 👋 Kom gjerne tilbake hvis du lurer på noe mer!",
+                    "Vi ses! 😊 Det var hyggelig å snakke med deg!",
+                    "Ha en fin dag! ✨ Velkommen tilbake når som helst!",
+                    "Bye bye! 🌟 Lykke til med nettsiden!"
+                ];
+                return goodbyes[Math.floor(Math.random() * goodbyes.length)];
+            }
+            
+            // === GENERELLE SAMTALE ===
+            if (msg.match(/\b(bra|fine|fint|ok|okei|good|great)/i) && msg.length < 20) {
+                return "Det er fint å høre! 😊 Hvordan kan jeg hjelpe deg i dag? Lurer du på noe om nettsider?";
+            }
+            
+            if (msg.match(/\b(trist|lei|sad|dårlig|vondt)/i)) {
+                return "Åh nei, det høres ikke bra ut! 💙 Jeg håper det blir bedre! Kanskje jeg kan hjelpe deg med noe som kan løfte humøret? En ny nettside kanskje? 😊";
+            }
+            
+            // === PRISER ===
+            if (msg.match(/\b(pris|kost|price|cost|hvor mye|betale|payment)/i)) {
+                if (msg.match(/\b(billig|dyrt|expensive|cheap)/i)) {
+                    return `${bunizPersonality.knowledge.company} har utrolig god pris! 💰 Startprisen er bare ${bunizPersonality.knowledge.basePrice}! Det er ekstremt rimelig for en profesjonell nettside. ${bunizPersonality.knowledge.priceNote}. Hva slags nettside tenker du på?`;
+                }
+                if (msg.match(/\b(rabatt|discount)/i)) {
+                    return `God nyhet! 🎉 ${bunizPersonality.knowledge.discounts}. Grunnprisen starter på bare ${bunizPersonality.knowledge.basePrice}, og du kan få ytterligere rabatt! Kontakt ${bunizPersonality.knowledge.phone} for tilbud!`;
+                }
+                const priceResponses = [
+                    `Startprisen er kun ${bunizPersonality.knowledge.basePrice}! 💎 Ja, du leste riktig - bare 250 kroner for en profesjonell nettside! ${bunizPersonality.knowledge.priceNote}. Skal jeg fortelle hva som er inkludert?`,
+                    `For bare ${bunizPersonality.knowledge.basePrice} får du en profesjonell nettside! 🌟 Det inkluderer grunnleggende design, innhold og oppsett. Mer avanserte løsninger har tilpasset pris, men alltid til svært konkurransedyktig rate! Hva trenger du?`,
+                    `Uslåelig pris: ${bunizPersonality.knowledge.basePrice}! 💰 Dette er startprisen som gir deg en solid grunnpakke. ${bunizPersonality.knowledge.discounts}. Vil du vite mer?`
+                ];
+                return priceResponses[Math.floor(Math.random() * priceResponses.length)];
+            }
+            
+            // === KONTAKT ===
+            if (msg.match(/\b(kontakt|ring|tlf|telefon|phone|call|e-post|email|mail)/i)) {
+                if (msg.match(/\b(åpent|tid|when|opening|når)/i)) {
+                    return `Du kan kontakte ${bunizPersonality.knowledge.company} når som helst! 📱 Ring ${bunizPersonality.knowledge.phone} eller mail ${bunizPersonality.knowledge.email}. De svarer vanligvis samme dag!`;
+                }
+                return `Ta kontakt på ${bunizPersonality.knowledge.phone} 📱 eller ${bunizPersonality.knowledge.email} 📧 De svarer raskt! Skal jeg hjelpe med noe annet først?`;
+            }
+            
+            // === TJENESTER ===
+            if (msg.match(/\b(tjeneste|service|tilbud|hva.*(lager|gjør|tilbyr)|what.*do)/i)) {
+                const serviceList = bunizPersonality.knowledge.services.slice(0, 3).join(', ');
+                return `${bunizPersonality.knowledge.company} tilbyr: ${serviceList}, og mye mer! 🌟 Alt er håndkodet og tilpasset dine behov. Skal jeg fortelle mer om en spesifikk tjeneste?`;
+            }
+            
+            // === TID / LEVERANSE ===
+            if (msg.match(/\b(tid|hvor lang|når|rask|time|delivery|lever|ferdig|prosess|process)/i)) {
+                if (msg.match(/\b(haster|rush|raskt|quick|asap)/i)) {
+                    return `Har du det travelt? ⚡ Arbeidsprosessen inkluderer: ${bunizPersonality.knowledge.process.join(' → ')}. Jeg jobber effektivt! Når trenger du nettsiden?`;
+                }
+                return `Arbeidsprosessen er: ${bunizPersonality.knowledge.process.join(', ')}! 🚀 Alt håndteres profesjonelt fra start til slutt. Hva er tidsrammen din?`;
+            }
+            
+            // === TEKNOLOGI ===
+            if (msg.match(/\b(teknologi|hvordan laget|kode|code|tech|program|wordpress|template)/i)) {
+                return `Alt er håndkodet med ${bunizPersonality.knowledge.technology.join(', ')}! 💻 INGEN templates eller WordPress! Dette gir deg raskere sider, bedre sikkerhet og full kontroll. Ekte håndverk! 😎`;
+            }
+            
+            // === MOBIL / RESPONSIVE ===
+            if (msg.match(/\b(mobil|mobile|responsive|telefon|phone|tablet)/i)) {
+                return "Selvfølgelig! 📱 Alle nettsider er 100% mobiloptimaliserte! Vi designer mobile-first, så det ser perfekt ut på alle enheter. Over 60% bruker mobil i dag, så dette er kritisk!";
+            }
+            
+            // === SEO / GOOGLE ===
+            if (msg.match(/\b(seo|google|søk|search|rank|finne|find)/i)) {
+                return "SEO er innebygd fra dag én! 🚀 Vi optimaliserer alt for Google - riktig HTML, metadata, bilder, rask lasting. Dette hjelper deg å ranke høyt! Google elsker raske, godt strukturerte sider! 📈";
+            }
+            
+            // === DESIGN ===
+            if (msg.match(/\b(design|utseende|look|style|stil|farger|color|logo)/i)) {
+                return "Design er vår greie! ✨ Vi lager moderne, profesjonelle design tilpasset DIN bedrift. Du bestemmer farger, stil og layout - vi designer sammen! Alt fra minimalistisk til fargerikt! 🎨";
+            }
+            
+            // === EKSEMPLER / PORTFOLIO ===
+            if (msg.match(/\b(eksempel|example|portfolio|prosjekt|project|tidligere|previous|referanse)/i)) {
+                const project1 = bunizPersonality.knowledge.projects[0];
+                const project2 = bunizPersonality.knowledge.projects[1];
+                return `Vi har laget flotte nettsider! 🎨 For eksempel:\n\n📱 ${project1.name} - ${project1.description}. ${project1.rating}!\n\n💎 ${project2.name} - ${project2.description}. ${project2.rating}!\n\nScroll ned på siden til 'Featured Projects' for å se mer! Imponerende, ikke sant?`;
+            }
+            
+            // === OM MAGGIE STUDIOS / EIEREN ===
+            if (msg.match(/\b(hvem lager|who makes|eier|owner|kanishka|maggie|om dere|about you)/i)) {
+                return `${bunizPersonality.knowledge.company} drives av ${bunizPersonality.knowledge.owner}! 👨‍💻 ${bunizPersonality.knowledge.about}. Kundetilfredshet: ${bunizPersonality.knowledge.stats.satisfaction}! 🌟`;
+            }
+            
+            // === STATISTIKK ===
+            if (msg.match(/\b(fornøyd|satisfied|kunder|customers|anmeldelse|review|rating)/i)) {
+                return `Alle kunder er ${bunizPersonality.knowledge.stats.satisfaction} fornøyde! ⭐⭐⭐⭐⭐ Her er hva kunder sier:\n\n"${bunizPersonality.knowledge.projects[0].testimonial}" - ${bunizPersonality.knowledge.projects[0].name}\n\n"${bunizPersonality.knowledge.projects[1].testimonial}" - ${bunizPersonality.knowledge.projects[1].name}\n\nVil du også ha en nettside som gjør kundene dine fornøyde?`;
+            }
+            
+            // === NETTBUTIKK ===
+            if (msg.match(/\b(butikk|shop|e-handel|ecommerce|selge|sell|produkter|products)/i)) {
+                return "Vi lager også nettbutikker! 🛒 Fra små butikker til store e-handelsløsninger. Inkluderer handlekurv, betaling, produkter og admin. Fra 1200kr. Hva skal du selge?";
+            }
+            
+            // === RABATTKODER ===
+            if (msg.match(/\b(rabatt|discount|kode|code|tilbud|offer|kupong)/i)) {
+                return "Rabattkoder er hemmelige! 🤫 Jeg kan ikke dele dem, men hold øye med bannere på siden! Det dukker opp spesielle tilbud. Sjekk nederst på siden! 😊";
+            }
+            
+            // === SPØRSMÅLSORD - INTELLIGENT GJETTING ===
+            if (msg.match(/^(hva|hvem|hvor|når|hvorfor|hvordan|what|who|where|when|why|how)/i)) {
+                // Prøv å forstå konteksten
+                if (msg.includes('du') || msg.includes('you') || msg.includes('buniz')) {
+                    return `Jeg er ${bunizPersonality.name}! 🐰 Jeg hjelper folk med spørsmål om ${bunizPersonality.knowledge.company} og nettsider. Jeg kan svare på det meste! Hva lurer du spesifikt på?`;
+                }
+                if (msg.match(/\b(vi|dere|${bunizPersonality.knowledge.company.toLowerCase()})/)) {
+                    return `${bunizPersonality.knowledge.company} lager profesjonelle nettsider! 🌟 Vi tilbyr alt fra design til lansering. Priser: ${bunizPersonality.knowledge.priceRange}. Hva vil du vite mer om?`;
+                }
+                return "Det er et godt spørsmål! 🤔 Jeg vil gjerne hjelpe, men kan du utdype litt? Eller skal jeg fortelle deg om priser, tjenester eller noe annet?";
+            }
+            
+            // === KONTEKSTBASERT INTELLIGENT SVAR ===
+            const lastMessages = conversationHistory.slice(-4).filter(h => h.role === 'assistant');
+            if (lastMessages.length > 0) {
+                const lastBot = lastMessages[lastMessages.length - 1];
+                
+                // Hvis forrige melding var et spørsmål
+                if (lastBot.message.includes('?')) {
+                    if (msg.match(/\b(ja|yes|yep|sure|ok|gjerne|absolutely)/i)) {
+                        return `Flott! 🌟 Ta kontakt på ${bunizPersonality.knowledge.phone} eller ${bunizPersonality.knowledge.email} så får du hjelp! Er det noe annet jeg kan svare på nå?`;
+                    }
+                    if (msg.match(/\b(nei|no|nope|ikke|not)/i)) {
+                        return "Helt greit! 😊 Er det noe annet du lurer på? Jeg kan svare på det meste!";
+                    }
+                }
+            }
+            
+            // === GENERELL INTELLIGENT RESPONS ===
+            // Hvis meldingen er kort og generell
+            if (msg.length < 10) {
+                const short = [
+                    "Hmm! 🤔 Kan du si litt mer om hva du tenker på?",
+                    "Interessant! 😊 Fortell meg mer!",
+                    "Okei! ✨ Hva vil du vite mer om?",
+                    "Jeg hører! 💭 Hva lurer du på spesifikt?"
+                ];
+                return short[Math.floor(Math.random() * short.length)];
+            }
+            
+            // Ekstraher ord fra meldingen for kontekst
+            const words = msg.split(/\s+/).filter(w => w.length > 3);
+            if (words.length > 0) {
+                const keyword = words[0];
+                return `Interessant at du nevner "${keyword}"! 🤔 ${bunizPersonality.knowledge.company} kan sikkert hjelpe med det! Vil du vite om priser, tjenester, eller noe spesifikt?`;
+            }
+            
+            // === FALLBACK - ALLTID INTELLIGENT ===
+            const fallbacks = [
+                `Bra spørsmål! 🤔 Som ${bunizPersonality.role} kan jeg hjelpe med det meste! Lurer du på priser, tjenester, design eller noe annet?`,
+                "Hmm, jeg er ikke helt sikker på hva du mener! 😊 Men jeg hjelper gjerne! Kan du utdype litt? Eller skal jeg fortelle om hva vi tilbyr?",
+                `Jeg vil gjerne hjelpe! 💡 ${bunizPersonality.knowledge.company} kan hjelpe med nettsider, design, SEO og mye mer. Hva interesserer deg mest?`,
+                "God tanke! ✨ For å gi deg best mulig svar - hva er det viktigste du lurer på? Priser? Tjenester? Design?",
+                "Kult at du spør! 😊 Jeg kan fortelle om alt fra priser til teknologi. Hva vil du vite om?",
+                `Jeg forstår! 🌟 Som assistent for ${bunizPersonality.knowledge.company} kan jeg hjelpe med det meste. Hva lurer du mest på?`,
+                "Interessant! 💭 La meg hjelpe deg! Tenker du på å lage en nettside, eller vil du bare vite mer?",
+                "Jeg er her for å hjelpe! 🐰 Hva kan jeg fortelle deg om? Priser? Eksempler? Hvordan vi jobber?"
+            ];
+            
+            return fallbacks[Math.floor(Math.random() * fallbacks.length)];
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
         // Contact Form SMS Handler
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -2395,6 +4164,3 @@
     </script>
 </body>
 </html>
-
-
-
